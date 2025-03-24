@@ -1,8 +1,6 @@
+import type { FeatureCollection } from 'geojson'
+
 declare module '*.gpx' {
-  import type { GeoJsonFeatureCollection } from './index'
-
-  const content: GeoJsonFeatureCollection
+  const content: FeatureCollection
   export default content
-
-  export const rawGpx: string
 }

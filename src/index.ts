@@ -3,28 +3,6 @@ import { readFileSync } from 'node:fs'
 import { gpx } from '@tmcw/togeojson'
 import { DOMParser } from 'xmldom'
 
-// Define GeoJSON types
-export interface GeoJsonPoint {
-  type: 'Point'
-  coordinates: [number, number, number?]
-}
-
-export interface GeoJsonLineString {
-  type: 'LineString'
-  coordinates: Array<[number, number, number?]>
-}
-
-export interface GeoJsonFeature {
-  type: 'Feature'
-  properties: Record<string, any>
-  geometry: GeoJsonPoint | GeoJsonLineString
-}
-
-export interface GeoJsonFeatureCollection {
-  type: 'FeatureCollection'
-  features: GeoJsonFeature[]
-}
-
 export interface GpxPluginOptions {
   /**
    * The file extensions to be processed by this plugin
@@ -38,7 +16,7 @@ export interface GpxPluginOptions {
   includeRaw?: boolean
 }
 
-export default function gpxPlugin(options: GpxPluginOptions = {}): Plugin {
+export default function gpxPlugin(options: GpxPluginOptions = {}): Plugin<void> {
   const extensions = options.extensions || ['.gpx']
   const includeRaw = options.includeRaw || false
 
@@ -76,14 +54,5 @@ export default function gpxPlugin(options: GpxPluginOptions = {}): Plugin {
         return null
       }
     },
-  }
-}
-
-// For Vite compatibility
-export function viteGpxPlugin(options: GpxPluginOptions = {}): Plugin {
-  const plugin = gpxPlugin(options)
-  return {
-    ...plugin,
-    enforce: 'pre' as const,
   }
 }

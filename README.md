@@ -31,13 +31,15 @@ yarn add rollup-plugin-gpx
 ### With Vite
 
 ```js
-import { viteGpxPlugin } from 'rollup-plugin-gpx'
+import { gpxPlugin } from 'rollup-plugin-gpx'
 
 // vite.config.js
 import { defineConfig } from 'vite'
+
 export default defineConfig({
   plugins: [
-    viteGpxPlugin({
+    /// <reference types="rollup-plugin-gpx/gpx" />
+    gpxPlugin({
       // options
     })
   ]
