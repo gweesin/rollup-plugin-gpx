@@ -1,2 +1,89 @@
-export const one = 1
-export const two = 2
+import type { Plugin } from 'rollup'
+import { readFileSync } from 'node:fs'
+import { gpx } from '@tmcw/togeojson'
+import { DOMParser } from 'xmldom'
+
+// Define GeoJSON types
+export interface GeoJsonPoint {
+  type: 'Point'
+  coordinates: [number, number, number?]
+}
+
+export interface GeoJsonLineString {
+  type: 'LineString'
+  coordinates: Array<[number, number, number?]>
+}
+
+export interface GeoJsonFeature {
+  type: 'Feature'
+  properties: Record<string, any>
+  geometry: GeoJsonPoint | GeoJsonLineString
+}
+
+export interface GeoJsonFeatureCollection {
+  type: 'FeatureCollection'
+  features: GeoJsonFeature[]
+}
+
+export interface GpxPluginOptions {
+  /**
+   * The file extensions to be processed by this plugin
+   * @default ['.gpx']
+   */
+  extensions?: string[]
+  /**
+   * Whether to include the raw GPX string in the output
+   * @default false
+   */
+  includeRaw?: boolean
+}
+
+export default function gpxPlugin(options: GpxPluginOptions = {}): Plugin {
+  const extensions = options.extensions || ['.gpx']
+  const includeRaw = options.includeRaw || false
+
+  return {
+    name: 'rollup-plugin-gpx',
+
+    transform(code: string, id: string) {
+      // Check if this file should be processed by this plugin
+      const fileExt = id.substring(id.lastIndexOf('.'))
+      if (!extensions.includes(fileExt)) {
+        return null
+      }
+
+      try {
+        // Read the GPX file and convert to GeoJSON
+        const gpxContent = code || readFileSync(id, 'utf-8')
+        const dom = new DOMParser().parseFromString(gpxContent)
+        const geoJson = gpx(dom)
+
+        // Create a module that exports the GeoJSON data
+        let output = `const geoJson = ${JSON.stringify(geoJson)};\n`
+        output += 'export default geoJson;\n'
+
+        // Optionally include the raw GPX string
+        if (includeRaw) {
+          output += `export const rawGpx = ${JSON.stringify(gpxContent)};\n`
+        }
+        return {
+          code: output,
+          map: { mappings: '' }, // No source map needed for this transformation
+        }
+      }
+      catch (error) {
+        this.error(`Error processing GPX file ${id}: ${error}`)
+        return null
+      }
+    },
+  }
+}
+
+// For Vite compatibility
+export function viteGpxPlugin(options: GpxPluginOptions = {}): Plugin {
+  const plugin = gpxPlugin(options)
+  return {
+    ...plugin,
+    enforce: 'pre' as const,
+  }
+}

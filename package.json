@@ -1,19 +1,25 @@
 {
-  "name": "vite-plugin-gpx",
+  "name": "rollup-plugin-gpx",
   "type": "module",
   "version": "0.0.0",
   "packageManager": "pnpm@10.6.2",
-  "description": "a vite plugin to parse gpx files",
+  "description": "A Vite/Rollup plugin to parse GPX files into GeoJSON format",
   "author": "gweesin<gweesin2000@gmail.com>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/antfu",
-  "homepage": "https://github.com/gweesin/vite-plugin-gpx#readme",
+  "homepage": "https://github.com/gweesin/rollup-plugin-gpx#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gweesin/vite-plugin-gpx.git"
+    "url": "git+https://github.com/gweesin/rollup-plugin-gpx.git"
   },
-  "bugs": "https://github.com/gweesin/vite-plugin-gpx/issues",
-  "keywords": ["vite", "plugin", "gpx", "parse", "gpx files"],
+  "bugs": "https://github.com/gweesin/rollup-plugin-gpx/issues",
+  "keywords": [
+    "vite",
+    "plugin",
+    "gpx",
+    "parse",
+    "gpx files"
+  ],
   "sideEffects": false,
   "exports": {
     ".": "./dist/index.mjs",
@@ -36,6 +42,11 @@
     "typecheck": "tsc --noEmit",
     "prepare": "simple-git-hooks"
   },
+  "dependencies": {
+    "@tmcw/togeojson": "catalog:",
+    "@types/xmldom": "catalog:",
+    "xmldom": "catalog:"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:cli",
     "@antfu/ni": "catalog:cli",
@@ -44,6 +55,7 @@
     "bumpp": "catalog:cli",
     "eslint": "catalog:cli",
     "lint-staged": "catalog:cli",
+    "rollup": "catalog:",
     "simple-git-hooks": "catalog:cli",
     "tinyexec": "catalog:utils",
     "tsx": "catalog:cli",
