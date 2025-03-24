@@ -1,7 +1,7 @@
 {
   "name": "rollup-plugin-gpx",
   "type": "module",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "packageManager": "pnpm@10.6.2",
   "description": "A Vite/Rollup plugin to parse GPX files into GeoJSON format",
   "author": "gweesin<gweesin2000@gmail.com>",
