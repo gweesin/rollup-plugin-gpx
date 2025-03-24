@@ -68,14 +68,6 @@ import GpxTravel from './gpx-travel.gpx'
 console.log(GpxTravel, 'GpxTravel')
 ```
 
-## Sponsors
-
-<p align="center">
-  <a href="https://cdn.jsdelivr.net/gh/gweesin/static/sponsors.svg">
-    <img src='https://cdn.jsdelivr.net/gh/gweesin/static/sponsors.svg'/>
-  </a>
-</p>
-
 ## License
 
 [MIT](./LICENSE) License © [gweesin](https://github.com/gweesin)
