@@ -26,7 +26,7 @@ or
 yarn add rollup-plugin-gpx
 ```
 
-## Usage
+## Setup
 
 ### With Vite
 
@@ -58,6 +58,14 @@ export default {
     })
   ]
 }
+```
+
+## Usage
+
+```js
+import GpxTravel from './gpx-travel.gpx'
+
+console.log(GpxTravel, 'GpxTravel')
 ```
 
 ## Sponsors
