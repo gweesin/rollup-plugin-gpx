@@ -56,3 +56,5 @@ export default function gpxPlugin(options: GpxPluginOptions = {}): Plugin<void> 
     },
   }
 }
+
+export type { FeatureCollection } from 'geojson'
