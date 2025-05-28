@@ -11,8 +11,6 @@
     "declarationMap": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "verbatimModuleSyntax": true,
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true
+    "verbatimModuleSyntax": true
   }
 }

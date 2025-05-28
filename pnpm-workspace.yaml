@@ -11,6 +11,7 @@ catalog:
   '@vue/tsconfig': ^0.7.0
   geojson: ^0.5.0
   rollup: ^4.37.0
+  rollup-plugin-gpx: catalog
   vue: ^3.5.13
   vue-tsc: ^2.2.4
   xmldom: ^0.6.0

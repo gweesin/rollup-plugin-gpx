@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "rollup-plugin-gpx": "workspace:*",
     "vue": "catalog:"
   },
   "devDependencies": {

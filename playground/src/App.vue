@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// @ts-ignore
 import Gpx from './assets/20250323-walking.gpx';
 
 console.log('Gpx', Gpx)
