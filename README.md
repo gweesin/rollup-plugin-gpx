@@ -68,7 +68,7 @@ import GpxTravel from './gpx-travel.gpx'
 console.log(GpxTravel, 'GpxTravel')
 ```
 
-sample used in [gweesin's website](https://gweesin.netlify.app/walks/)
+sample used in [gweesin's website](https://gweesin.me/walks/)
 
 ![sample.png](assets/sample.png)
 
